@@ -8,4 +8,15 @@ public class UIManager : MonoBehaviour
     {
         Authentication.Instance.SignOut();
     }
+
+    public void FindMatchButton()
+    {
+        //MatchMaking.Instance.FindMatch();
+        MatchMakingManager.Instance.FindMatch();
+    }
+
+    //public void ReadyButton()
+    //{
+    //    MatchMaking.Instance.PlayerReady();
+    //}
 }

@@ -208,6 +208,8 @@ public class Authentication : MonoBehaviour
     private void LoginSuccess()
     {
         //MatchMaking.Instance.UpdateUserLevel(auth.CurrentUser.UserId, 1);
+        MatchMakingManager.Instance.UpdateUserStatus(auth.CurrentUser.UserId, "Online");
+        MatchMakingManager.Instance.UpdateUserElo(auth.CurrentUser.UserId, 1000);
         SceneManager.LoadScene(1);
     }
 
@@ -279,6 +281,11 @@ public class Authentication : MonoBehaviour
 
         // Perform any additional actions after sign out if needed
         SceneManager.LoadScene(0);
+    }
+
+    public FirebaseAuth GetFirebaseAuth()
+    {
+        return auth;
     }
 
     bool ValidateEmailAndPassword(string email, string password)
