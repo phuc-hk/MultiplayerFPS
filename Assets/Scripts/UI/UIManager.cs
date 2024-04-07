@@ -15,8 +15,8 @@ public class UIManager : MonoBehaviour
         MatchMakingManager.Instance.FindMatch();
     }
 
-    //public void ReadyButton()
-    //{
-    //    MatchMaking.Instance.PlayerReady();
-    //}
+    public void ReadyButton()
+    {
+        MatchMakingManager.Instance.SetPlayerReady();
+    }
 }

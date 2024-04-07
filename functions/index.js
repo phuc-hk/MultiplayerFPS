@@ -87,14 +87,20 @@ function findOpponent(playerId) {
  * @return {Promise<void>} - A Promise that resolves when the match is created.
  */
 function createMatch(playerId, opponentId) {
+  // If no opponent is found, do not create the match
+  if (!opponentId) {
+    console.log("No opponent found.");
+    return Promise.resolve();
+  }
+
   // Create match ID
   const matchId = admin.database().ref("matches").push().key;
 
   // Add players to match node
   const matchRef = admin.database().ref("matches").child(matchId);
-  matchRef.child("players").child(playerId).set(true);
-  matchRef.child("players").child(opponentId).set(true);
-  // matchRef.child("status").set("waiting");
+  matchRef.child("players").child(playerId).set(false);
+  matchRef.child("players").child(opponentId).set(false);
+  matchRef.child("status").set("waiting");
 
   // Set match ID for players
   admin.database().ref("players").child(playerId).child("matchID").set(matchId);
@@ -114,3 +120,31 @@ function createMatch(playerId, opponentId) {
   return Promise.resolve();
 }
 
+// Listen for changes in player readiness status
+exports.checkMatchReadiness =
+functions.database.ref("/matches/{matchId}/players/{playerId}")
+    .onUpdate((change, context) => {
+      const matchId = context.params.matchId;
+
+      // Check if all players in the match are ready
+      return change.after.ref.parent.once("value")
+          .then((snapshot) => {
+            let allReady = true;
+            snapshot.forEach((childSnapshot) => {
+              if (!childSnapshot.val()) {
+                allReady = false;
+                return true; // Stop iterating if any player is not ready
+              }
+            });
+            // If all players are ready, set match status to "InMatch"
+            if (allReady) {
+              return admin.database()
+                  .ref("matches").child(matchId).child("status").set("matched");
+            }
+            return null;
+          })
+          .catch((error) => {
+            console.error("Error checking match readiness:", error);
+            return null;
+          });
+    });
