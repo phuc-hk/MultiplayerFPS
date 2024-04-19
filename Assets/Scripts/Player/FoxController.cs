@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class FoxController : MonoBehaviour
 {
-    public float jumpForce = 20f;
+    public float jumpForce = 30f;
     public float moveAmount = 3f;
-    public float moveSpeed = 3f;
+    public float moveSpeed = 6f;
 
     private Rigidbody rigidBody;
     private Animator animator;
@@ -122,6 +122,14 @@ public class FoxController : MonoBehaviour
         {
             //Debug.Log("Cham dat ne");
             isGrounded = true;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            other.gameObject.SetActive(false);
         }
     }
 }
