@@ -265,9 +265,9 @@ MonoBehaviour:
   - {fileID: 3408768758784895344, guid: 8a9bf69c07848c84598b7fc802983fa2, type: 3}
   - {fileID: 2191312595312193284, guid: 91e33d9e140c02c4faeb94b5279b1a8f, type: 3}
   player: {fileID: 543450652153151584}
-  spawnDistance: 50
+  spawnDistance: 10
   spawnPositionZ: 200
-  initialPoolSize: 10
+  initialPoolSize: 3
 --- !u!1 &641409842
 GameObject:
   m_ObjectHideFlags: 3
@@ -427,7 +427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657506299}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06814841, y: 0.000000017341566, z: -0.0000000011845538, w: 0.99767524}
+  m_LocalRotation: {x: 0.06814842, y: -0.000000016818666, z: 0.0000000011488359, w: 0.99767524}
   m_LocalPosition: {x: 0, y: 11.2, z: -10.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -699,7 +699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011885131}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.06814841, y: 0.000000017341566, z: -0.0000000011845538, w: 0.99767524}
+  m_LocalRotation: {x: 0.06814842, y: -0.000000016818666, z: 0.0000000011488359, w: 0.99767524}
   m_LocalPosition: {x: 0, y: 11.2, z: -10.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

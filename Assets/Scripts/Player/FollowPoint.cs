@@ -11,12 +11,6 @@ public class FollowPoint : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void LateUpdate()
     {
         transform.position = new Vector3(0, player.transform.position.y, player.transform.position.z);

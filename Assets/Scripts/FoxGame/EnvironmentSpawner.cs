@@ -9,7 +9,7 @@ public class EnvironmentSpawner : MonoBehaviour
     //public GameObject rightTurnPrefab;
     //public GameObject sidewaysTurnPrefab;
     public Transform player; // Reference to the player's transform
-    public float spawnDistance = 50f; // Distance ahead of the player to spawn new environment elements
+    public float spawnDistance = 10f; // Distance ahead of the player to spawn new environment elements
     public float spawnPositionZ = 200f;
     //public float turnChance = 0.2f; // Probability of a turn being spawned
 
@@ -27,15 +27,15 @@ public class EnvironmentSpawner : MonoBehaviour
     void InitializePool()
     {
         // Initialize environment element pool
-        foreach (GameObject prefab in environmentPrefabs)
+ 
+        for (int i = 0; i < initialPoolSize; i++)
         {
-            for (int i = 0; i < initialPoolSize; i++)
-            {
-                GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
-                obj.SetActive(false);
-                objectPool.Add(obj);
-            }
+            GameObject prefab = environmentPrefabs[Random.Range(0, environmentPrefabs.Length)];
+            GameObject obj = Instantiate(prefab, Vector3.zero, Quaternion.identity);
+            obj.SetActive(false);
+            objectPool.Add(obj);
         }
+
 
         //// Initialize turn prefabs pool
         //GameObject[] turnPrefabs = { leftTurnPrefab, rightTurnPrefab, sidewaysTurnPrefab };
